@@ -1,0 +1,58 @@
+const cars = [
+  {
+    carAvg: 60,
+    carBrand: "BMW",
+    id: "clsoqajha0xi90aleiarpxy8i",
+    price: 1600,
+    name: "BMW 5series",
+    createdAt: "2024-02-16T14:11:41.449635+00:00",
+    publishedAt: null,
+    updatedAt: "2024-02-16T21:45:14.665815+00:00",
+    image: {
+      url: "https://media.graphassets.com/WSvfqnwDR5WhTVJ4QrXi",
+    },
+    carType: "auto",
+  },
+  {
+    carAvg: 80,
+    carBrand: "Toyota",
+    id: "clsq17ho53l6d0alewk47xc9r",
+    price: 1200,
+    name: "Toyota Corolla",
+    createdAt: "2024-02-17T12:05:01.102456+00:00",
+    publishedAt: null,
+    updatedAt: "2024-02-17T12:05:01.102456+00:00",
+    image: {
+      url: "https://media.graphassets.com/nM9Uez9QxCcNXUNcd6wA",
+    },
+    carType: "manual",
+  },
+  {
+    carAvg: 85,
+    carBrand: "Audi",
+    id: "clsq4ovyj41d30bk5igpyp3y5",
+    price: 2000,
+    name: "Audi A6",
+    createdAt: "2024-02-17T13:42:31.612626+00:00",
+    publishedAt: null,
+    updatedAt: "2024-02-17T13:45:41.617907+00:00",
+    image: {
+      url: "https://media.graphassets.com/hheF1w9SrGKIVhH1zbay",
+    },
+    carType: "auto",
+  },
+  {
+    carAvg: 55,
+    carBrand: "Volkswagen",
+    id: "clsqhb2lw5jck0blducolk1lt",
+    price: 2500,
+    name: "Volkswagen Touareg",
+    createdAt: "2024-02-17T19:35:42.064552+00:00",
+    publishedAt: null,
+    updatedAt: "2024-02-17T19:35:42.064552+00:00",
+    image: {
+      url: "https://media.graphassets.com/qKTEwqbQAM2rXtKOLsEg",
+    },
+    carType: "auto",
+  },
+];
