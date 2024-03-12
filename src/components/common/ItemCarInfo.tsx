@@ -1,6 +1,15 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { ReactNode } from "react"; // Імпортуємо ReactNode для використання властивості icon
 
-const ItemCarInfo = ({ title, array, icon }) => {
+type ItemCarInfoProps = {
+  title: string;
+  array: {
+    specialFeatures: string[]; // Очікуємо масив рядків для властивості specialFeatures
+  };
+  icon: ReactNode; // Використовуємо ReactNode для іконки, оскільки вона може бути React-елементом
+};
+
+const ItemCarInfo = ({ title, array, icon }: ItemCarInfoProps) => {
   return (
     <>
       <Typography variant="h6" mb={1}>

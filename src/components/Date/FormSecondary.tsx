@@ -1,9 +1,5 @@
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Box, Button } from "@mui/material";
-import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
-import DateInputField from "./DateInputField";
+import { Box, Button, TextField } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { FormSecondaryValue } from "../../Types/formTypes";
 
@@ -17,7 +13,6 @@ export default function FormSecondary() {
   });
 
   const {
-    register,
     handleSubmit,
     reset,
     getValues,
@@ -36,65 +31,89 @@ export default function FormSecondary() {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <Box
+      component="form"
+      noValidate
+      autoComplete="off"
+      sx={{ my: 3 }}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        sx={{ my: 3 }}
         display="flex"
-        flexDirection="column"
+        flexDirection={{ xs: "column", sm: "row" }}
+        justifyContent="space-between"
         alignItems="center"
-        onSubmit={handleSubmit(onSubmit)}
+        gap={{ xs: 2, sm: 1 }}
+        sx={{ width: { xs: "86vw", sm: "100%" } }}
       >
-        <Box
-          display="flex"
-          flexDirection={{ xs: "column", sm: "row" }}
-          justifyContent="space-between"
-          alignItems="center"
-          gap={{ xs: 2, sm: 1 }}
-          sx={{ width: { xs: "86vw", sm: "100%" } }}
-        >
-          <DateInputField
-            error={!!errors.name}
-            helperText={errors.name?.message}
-            register={register("name", {
-              required: "Поле є обов'язковим",
-              minLength: {
-                value: 3,
-                message: "Мінімально 3 символа",
-              },
-              maxLength: {
-                value: 12,
-                message: "Максимум 12 симолів",
-              },
-            })}
-            label="Ім'я"
-            type="text"
-          />
-          <DateInputField
-            error={!!errors.phone}
-            helperText={errors.phone?.message}
-            register={register("phone", {
-              required: "Поле є обовязковим",
-              minLength: { value: 12, message: "Мінімум 13 символів" },
-              maxLength: { value: 13, message: "Максимум 13 символів" },
-            })}
-            label="Номер телефону"
-            type="number"
-          />
-        </Box>
+        <Controller
+          control={control}
+          rules={{
+            required: "Поле є обов'язковим",
+          }}
+          render={({ field }) => (
+            <TextField
+              placeholder="Введіть імя"
+              {...field}
+              type="text"
+              error={!!errors.name}
+              helperText={errors.name?.message}
+              size="small"
+              label="Імя"
+              variant="standard"
+              color="secondary"
+              focused
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                  width: "260px",
+                },
+              }}
+            />
+          )}
+          name="name"
+        />
 
-        <Button
-          type="submit"
-          variant="outlined"
-          color="secondary"
-          sx={{ mt: "32px" }}
-        >
-          Зателефонувати мені
-        </Button>
+        <Controller
+          control={control}
+          rules={{
+            required: "Поле є обов'язковим",
+          }}
+          render={({ field }) => (
+            <TextField
+              placeholder="Введіть номер телефону"
+              {...field}
+              type="number"
+              error={!!errors.phone}
+              helperText={errors.phone?.message}
+              size="small"
+              label="Телефон"
+              variant="standard"
+              color="secondary"
+              focused
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                  width: "260px",
+                },
+              }}
+            />
+          )}
+          name="phone"
+        />
       </Box>
-      <DevTool control={control} />
-    </LocalizationProvider>
+
+      <Button
+        type="submit"
+        variant="outlined"
+        color="secondary"
+        sx={{ mt: "32px" }}
+      >
+        Зателефонувати мені
+      </Button>
+    </Box>
   );
 }

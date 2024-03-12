@@ -11,3 +11,8 @@ export type FormSecondaryValue = {
   name: string;
   phone: string;
 };
+
+export type FormLoginAndSignup = {
+  email: string;
+  password: string;
+};

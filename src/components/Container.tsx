@@ -11,15 +11,16 @@ const Container = ({ header, children }: Props) => {
       sx={{
         marginTop: "1rem",
         color: "text.primary",
-        mx: "24px",
+        mx: { xs: "16px", sm: "24px" },
       }}
     >
-      <Stack spacing={4}>
+      <Stack spacing={3}>
         {header && (
           <Box
             sx={{
               position: "relative",
-              paddingX: { xs: "20px", md: 0 },
+              // paddingX: { xs: "20px", md: 0 },
+              // paddingX: "0px",
               maxWidth: "1366px",
               marginX: "auto",
               width: "100%",
@@ -34,12 +35,7 @@ const Container = ({ header, children }: Props) => {
               },
             }}
           >
-            <Typography
-              variant="h6"
-              // fontWeight="700"
-              textTransform="uppercase"
-              color="white"
-            >
+            <Typography variant="h6" textTransform="uppercase" color="white">
               {header}
             </Typography>
           </Box>

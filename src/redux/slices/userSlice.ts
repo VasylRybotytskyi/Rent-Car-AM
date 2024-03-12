@@ -1,26 +1,27 @@
-// import { IMe, IUserState } from "@/types/Users";
-// import { PayloadAction, createSlice, isAnyOf } from "@reduxjs/toolkit";
-// import { tokenApi } from "../services/tokenApi";
-// import { usersApi } from "../services/usersApi";
+import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState: IUserState = {
-//   isAuthenticate: false,
-//   me: null,
-// };
+const initialState = {
+  email: null,
+  token: null,
+  id: null,
+};
 
-// const userSlice = createSlice({
-//   name: "user",
-//   initialState,
-//   reducers: {
-//     logout: () => initialState,
-//     setMe: (state, action: PayloadAction<IMe>) => {
-//       state.me = action.payload;
-//     },
-//   },
-// });
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    setUser(state, action) {
+      state.email = action.payload.email;
+      state.token = action.payload.token;
+      state.id = action.payload.id;
+    },
+    removeUser(state) {
+      state.email = null;
+      state.token = null;
+      state.id = null;
+    },
+  },
+});
 
-// const { actions, reducer } = userSlice;
-
-// export const { logout, setMe } = actions;
-
-// export default reducer;
+export const { setUser, removeUser } = userSlice.actions;
+export default userSlice.reducer;

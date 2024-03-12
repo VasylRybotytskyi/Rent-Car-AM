@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { carsApi } from "./services/carsApi";
 import orderSlice from "./slices/orderSlice";
+import userSlice from "./slices/userSlice"; // Імпортуйте користувача
 import {
   persistStore,
   persistReducer,
@@ -19,17 +20,19 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, orderSlice);
+const persistedOrderReducer = persistReducer(persistConfig, orderSlice);
+const persistedUserReducer = persistReducer(persistConfig, userSlice);
 
 export const store = configureStore({
   reducer: {
-    order: persistedReducer,
+    order: persistedOrderReducer,
+    user: persistedUserReducer,
     [carsApi.reducerPath]: carsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(carsApi.middleware),
 });

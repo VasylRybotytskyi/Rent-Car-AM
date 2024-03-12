@@ -1,17 +1,30 @@
-import { Box } from "@mui/material";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/use-auth";
 import Hero from "../components/Hero";
 import Container from "../components/Container";
 import CarsSlide from "../components/CarsSlide";
 
 const Home = () => {
+  const { isAuth } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+  }, [isAuth, navigate]);
+
+  if (!isAuth) {
+    return null;
+  }
+
   return (
     <>
       <Hero />
-      <Box>
-        <Container header="Наші пропозиції">
-          <CarsSlide />
-        </Container>
-      </Box>
+      <Container header="Наші пропозиції">
+        <CarsSlide />
+      </Container>
     </>
   );
 };

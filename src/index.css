@@ -14,9 +14,7 @@ body {
 
 .swiper-button-next,
 .swiper-button-prev {
-  font-size: var(
-    --swiper-navigation-size
-  ); /* Використовуйте змінну для розміру кнопок */
+  font-size: var(--swiper-navigation-size);
 }
 
 .mainSwiper {

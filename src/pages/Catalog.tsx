@@ -14,11 +14,10 @@ const Catalog = () => {
     selectedPrices: [],
     selectedFuels: [],
   });
-  const { data, error, isLoading } = useGetCarsListQuery();
+  const { data } = useGetCarsListQuery();
 
   useEffect(() => {
     if (data) {
-      // console.log(data.carLists);
       let filteredCars = data.carLists;
       if (checked.selectedBrands.length > 0) {
         filteredCars = filteredCars.filter((car: Car) =>

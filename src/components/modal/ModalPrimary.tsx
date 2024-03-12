@@ -3,9 +3,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import Date from "../Date/Date";
 import FormPrimary from "../Date/FormPrimary";
 import { Car } from "../../Types/filterTypes";
+
+interface CarInfoProps {
+  carInfo: Car;
+}
 
 const style = {
   position: "absolute",
@@ -21,7 +24,7 @@ const style = {
   p: 3,
 };
 
-export default function ModalPrimary({ carInfo }) {
+export default function ModalPrimary({ carInfo }: CarInfoProps) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -40,7 +43,7 @@ export default function ModalPrimary({ carInfo }) {
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <Typography>{carInfo.name}</Typography>
+          <Typography>{carInfo?.name}</Typography>
           <FormPrimary carInfo={carInfo} />
         </Box>
       </Modal>

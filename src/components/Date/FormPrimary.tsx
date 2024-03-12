@@ -1,17 +1,26 @@
 import dayjs from "dayjs";
-import { Box, Button } from "@mui/material";
-import { useForm } from "react-hook-form";
-// import { DevTool } from "@hookform/devtools";
-import DatePickerControl from "./DatePickerControl";
-import DateInputField from "./DateInputField";
+import { Box, Button, TextField } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addToOrder } from "../../redux/slices/orderSlice";
 import { toast } from "react-toastify";
 import { FormPrimaryValue } from "../../Types/formTypes";
+import { Car } from "../../Types/filterTypes";
+import { DatePicker } from "@mui/x-date-pickers";
 
-export default function FormPrimary({ carInfo }) {
+interface FormPrimaryProps {
+  carInfo: Car;
+}
+
+export default function FormPrimary({ carInfo }: FormPrimaryProps) {
   const dispatch = useDispatch();
-  const form = useForm<FormPrimaryValue>({
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+    control,
+    getValues,
+  } = useForm<FormPrimaryValue>({
     defaultValues: {
       name: "",
       surName: "",
@@ -23,36 +32,16 @@ export default function FormPrimary({ carInfo }) {
     mode: "onBlur",
   });
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid },
-    control,
-    getValues,
-  } = form;
-
-  const onSubmit = (data: FormValue) => {
-    const formattedData = {
-      startDate: dayjs(data.startDate).format("DD.MM.YYYY"),
-      endDate: dayjs(data.endDate).format("DD.MM.YYYY"),
-      name: data.name,
-      surName: data.surName,
-      phone: data.phone,
-      email: data.email,
-    };
-    console.log(formattedData);
-    reset();
-  };
-
-  const startDate = getValues("startDate");
-
-  const handleButtonClick = () => {
+  const onSubmit = () => {
     if (isValid) {
       const formData = getValues();
+      formData.startDate = dayjs(formData.startDate).format("DD.MM.YYYY");
+      formData.endDate = dayjs(formData.endDate).format("DD.MM.YYYY");
+      console.log(formData);
       dispatch(addToOrder({ ...carInfo, formData }));
       toast.success("Авто успішно заброньоване!");
     }
+    reset();
   };
 
   return (
@@ -74,40 +63,60 @@ export default function FormPrimary({ carInfo }) {
         gap={{ xs: 2, sm: 1 }}
         sx={{ width: { xs: "86vw", sm: "100%" } }}
       >
-        <DateInputField
-          error={!!errors.name}
-          helperText={errors.name?.message}
-          register={register("name", {
+        <Controller
+          control={control}
+          rules={{
             required: "Поле є обов'язковим",
-            minLength: {
-              value: 3,
-              message: "Мінімально 3 символа",
-            },
-            maxLength: {
-              value: 12,
-              message: "Максимум 12 симолів",
-            },
-          })}
-          label="Ім'я"
-          type="text"
+          }}
+          render={({ field }) => (
+            <TextField
+              placeholder="Введіть імя"
+              {...field}
+              type="text"
+              error={!!errors.name}
+              helperText={errors.name?.message}
+              size="small"
+              label="Імя"
+              variant="standard"
+              color="secondary"
+              focused
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                  width: "260px",
+                },
+              }}
+            />
+          )}
+          name="name"
         />
 
-        <DateInputField
-          error={!!errors.surName}
-          helperText={errors.surName?.message}
-          register={register("surName", {
-            required: "Поле є обовязковим",
-            minLength: {
-              value: 3,
-              message: "Мінімально 3 символа",
-            },
-            maxLength: {
-              value: 12,
-              message: "Максимум 12 симолів",
-            },
-          })}
-          label="Прізвище"
-          type="text"
+        <Controller
+          control={control}
+          rules={{
+            required: "Поле є обов'язковим",
+          }}
+          render={({ field }) => (
+            <TextField
+              placeholder="Введіть прізвище"
+              {...field}
+              type="text"
+              error={!!errors.surName}
+              helperText={errors.surName?.message}
+              size="small"
+              label="Прізвище"
+              variant="standard"
+              color="secondary"
+              focused
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                  width: "260px",
+                },
+              }}
+            />
+          )}
+          name="surName"
         />
       </Box>
       <Box
@@ -118,36 +127,59 @@ export default function FormPrimary({ carInfo }) {
         gap={{ xs: 2, sm: 1 }}
         sx={{ pt: "8px", width: { xs: "86vw", sm: "100%" } }}
       >
-        <DateInputField
-          error={!!errors.phone}
-          helperText={errors.phone?.message}
-          register={register("phone", {
-            required: "Поле є обовязковим",
-            minLength: {
-              value: 12,
-              message: "Мінімально 12 символів",
-            },
-            maxLength: {
-              value: 13,
-              message: "Максимум 13 симолів",
-            },
-          })}
-          label="Номер телефону"
-          type="number"
+        <Controller
+          control={control}
+          rules={{
+            required: "Поле є обов'язковим",
+          }}
+          render={({ field }) => (
+            <TextField
+              placeholder="Введіть номер телефону"
+              {...field}
+              type="number"
+              error={!!errors.phone}
+              helperText={errors.phone?.message}
+              size="small"
+              label="Телефон"
+              variant="standard"
+              color="secondary"
+              focused
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                  width: "260px",
+                },
+              }}
+            />
+          )}
+          name="phone"
         />
 
-        <DateInputField
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          register={register("email", {
+        <Controller
+          control={control}
+          rules={{
             required: "Поле є обов'язковим",
-            pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: "Невірний формат електронної адреси",
-            },
-          })}
-          label="Електронна адреса"
-          type="email"
+          }}
+          render={({ field }) => (
+            <TextField
+              {...field}
+              type="email"
+              error={!!errors.email}
+              helperText={errors.email?.message}
+              size="small"
+              label="Електронна адреса"
+              variant="standard"
+              color="secondary"
+              focused
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                  width: "260px",
+                },
+              }}
+            />
+          )}
+          name="email"
         />
       </Box>
       <Box
@@ -158,19 +190,66 @@ export default function FormPrimary({ carInfo }) {
         gap={{ xs: 2, sm: 1 }}
         sx={{ pt: "8px", width: { xs: "86vw", sm: "100%" } }}
       >
-        <DatePickerControl
-          label="Початок"
+        <Controller
+          control={control}
+          rules={{
+            required: "Виберіть дату",
+          }}
+          render={({ field, fieldState }) => (
+            <DatePicker
+              {...field}
+              format="DD.MM.YYYY"
+              label="Дата початку"
+              slotProps={{
+                openPickerIcon: { fontSize: "medium" },
+                openPickerButton: { color: "secondary" },
+                textField: {
+                  error: !!fieldState.error,
+                  helperText: fieldState.error?.message,
+                  variant: "standard",
+                  focused: true,
+                  color: "secondary",
+                },
+              }}
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                  width: "260px",
+                },
+              }}
+            />
+          )}
           name="startDate"
-          control={control}
-          startDate={startDate}
-          error={errors?.startDate}
         />
-        <DatePickerControl
-          label="Кінець"
-          name="endDate"
+
+        <Controller
           control={control}
-          startDate={startDate}
-          error={errors?.endDate}
+          rules={{ required: "Виберіть дату" }}
+          render={({ field, fieldState }) => (
+            <DatePicker
+              {...field}
+              format="DD.MM.YYYY"
+              label="Дата закінчення"
+              slotProps={{
+                openPickerIcon: { fontSize: "medium" },
+                openPickerButton: { color: "secondary" },
+                textField: {
+                  error: !!fieldState.error,
+                  helperText: fieldState.error?.message,
+                  variant: "standard",
+                  focused: true,
+                  color: "secondary",
+                },
+              }}
+              sx={{
+                "& .MuiInputBase-root": {
+                  color: "#fff",
+                  width: "260px",
+                },
+              }}
+            />
+          )}
+          name="endDate"
         />
       </Box>
 
@@ -179,11 +258,9 @@ export default function FormPrimary({ carInfo }) {
         variant="outlined"
         color="secondary"
         sx={{ mt: "32px" }}
-        onClick={handleButtonClick}
       >
         Бронювати
       </Button>
     </Box>
-    // <DevTool control={control} />
   );
 }

@@ -1,7 +1,8 @@
-import { Box, Stack, Typography } from "@mui/material";
-import uiConfigs from "../configs/uiConfig.ts";
+import { Box } from "@mui/material";
+import FormLogin from "../components/Date/FormLogin";
+import uiConfigs from "../configs/uiConfig.js";
 
-const Hero = () => {
+const Login = () => {
   return (
     <Box
       sx={{
@@ -46,15 +47,11 @@ const Hero = () => {
             zIndex: 3,
           }}
         >
-          <Stack>
-            <Typography sx={{ typography: { sm: "h2", xs: "h5" } }}>
-              Швидко & Легкий спосіб оренди автомобіля
-            </Typography>
-          </Stack>
+          <FormLogin />
         </Box>
       </Box>
     </Box>
   );
 };
 
-export default Hero;
+export default Login;

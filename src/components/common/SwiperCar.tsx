@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Card, CardMedia } from "@mui/material";
+import { Car } from "../../Types/filterTypes";
 
-type CarImage = {
-  url: string;
-};
-
-const SwiperCar: React.FC<{ images: CarImage[] }> = ({ images }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+const SwiperCar = ({ carInfo }: { carInfo: Car }) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<any | null>(null);
 
   return (
     <>
@@ -20,7 +17,7 @@ const SwiperCar: React.FC<{ images: CarImage[] }> = ({ images }) => {
         modules={[Navigation, Thumbs, FreeMode]}
         className="mainSwiper"
       >
-        {images.map((image, index) => (
+        {carInfo?.imagePath?.map((image, index) => (
           <SwiperSlide key={index}>
             <Card sx={{ borderRadius: "12px" }}>
               <CardMedia
@@ -32,14 +29,14 @@ const SwiperCar: React.FC<{ images: CarImage[] }> = ({ images }) => {
         ))}
       </Swiper>
       <Swiper
-        onSwiper={setThumbsSwiper}
+        onSwiper={(swiper) => setThumbsSwiper(swiper)}
         spaceBetween={10}
         slidesPerView={4}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode]}
       >
-        {images.map((image, index) => (
+        {carInfo?.imagePath?.map((image, index) => (
           <SwiperSlide key={index}>
             <Card sx={{ borderRadius: "12px", cursor: "pointer" }}>
               <CardMedia

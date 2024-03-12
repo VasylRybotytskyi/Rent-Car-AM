@@ -1,3 +1,5 @@
+import { FormPrimaryValue } from "./formTypes";
+
 export interface Brand {
   brand: string;
   brandValue: string;
@@ -23,9 +25,7 @@ export type Car = {
   id: string;
   price: number;
   name: string;
-  imagePath: {
-    url: string[];
-  };
+  imagePath: { url: string }[]; // Оголосіть imagePath як масив об'єктів з властивістю url
   carClass: "economy" | "business" | "midsize" | "crossover"; // Клас авто
   carFuel: "petrol" | "diesel" | "electric"; // Тип автомобіля
   rating: number;
@@ -34,6 +34,7 @@ export type Car = {
   transmission: string;
   description: string;
   speedLimit: number;
+  formData?: FormPrimaryValue;
 };
 
 export type SelectedFilter = {
