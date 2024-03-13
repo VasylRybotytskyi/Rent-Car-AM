@@ -12,12 +12,7 @@ const Signup = () => {
     >
       <Box
         sx={{
-          paddingTop: {
-            xs: "130%",
-            sm: "80%",
-            md: "60%",
-            lg: "45%",
-          },
+          minHeight: "90vh",
           backgroundPosition: "top",
           backgroundSize: "cover",
           backgroundImage: `url(https://www.topgear.com/sites/default/files/2022/09/1-BMW-3-Series.jpg)`,

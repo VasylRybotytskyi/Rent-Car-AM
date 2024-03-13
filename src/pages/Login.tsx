@@ -13,12 +13,7 @@ const Login = () => {
     >
       <Box
         sx={{
-          paddingTop: {
-            xs: "130%",
-            sm: "80%",
-            md: "60%",
-            lg: "45%",
-          },
+          minHeight: "90vh",
           backgroundPosition: "top",
           backgroundSize: "cover",
           backgroundImage: `url(${hero})`,
