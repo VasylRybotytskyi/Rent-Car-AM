@@ -1,5 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import uiConfigs from "../configs/uiConfig.ts";
+import hero from "../assets/images/hero.jpg";
 
 const Hero = () => {
   return (
@@ -19,7 +20,7 @@ const Hero = () => {
           },
           backgroundPosition: "top",
           backgroundSize: "cover",
-          backgroundImage: `url(https://www.topgear.com/sites/default/files/2022/09/1-BMW-3-Series.jpg)`,
+          backgroundImage: `url(${hero})`,
           position: "relative",
           zIndex: 1,
           "&::before": {

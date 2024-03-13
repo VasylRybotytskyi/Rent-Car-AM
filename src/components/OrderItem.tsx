@@ -8,13 +8,9 @@ import { Box, Card, Stack, Typography } from "@mui/material";
 import { removeFromOrder } from "../redux/slices/orderSlice";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "../hooks/use-redux";
-import { Car } from "../Types/filterTypes";
+import { OrderProps } from "../Types/Props";
 
-interface Props {
-  cars: Car[];
-}
-
-export default function OrderItem({ cars }: Props) {
+export default function OrderItem({ cars }: OrderProps) {
   const dispatch = useAppDispatch();
 
   const handleRemoveFromOrder = (id: string) => {
@@ -24,7 +20,7 @@ export default function OrderItem({ cars }: Props) {
 
   return (
     <div className="w-full ">
-      {cars.map(({ id, name, imagePath, formData }) => (
+      {cars.map(({ id, name, imagePath, price, formData }) => (
         <Accordion
           key={id}
           defaultExpanded
@@ -69,7 +65,7 @@ export default function OrderItem({ cars }: Props) {
                   }}
                   textAlign="center"
                 >
-                  2000грн
+                  {price}₴
                 </Typography>
               </Stack>
             </Box>

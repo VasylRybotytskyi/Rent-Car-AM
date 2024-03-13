@@ -19,8 +19,6 @@ const Container = ({ header, children }: Props) => {
           <Box
             sx={{
               position: "relative",
-              // paddingX: { xs: "20px", md: 0 },
-              // paddingX: "0px",
               maxWidth: "1366px",
               marginX: "auto",
               width: "100%",

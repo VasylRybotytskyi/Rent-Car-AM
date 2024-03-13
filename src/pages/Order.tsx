@@ -20,14 +20,14 @@ const Order = () => {
           </Box>
         ) : (
           <Typography
-            variant="h6"
             sx={{
-              textAlign: "center",
-              paddingTop: "15%",
               color: "#fff",
+              display: "grid",
+              placeItems: "center",
+              paddingTop: "200px",
             }}
           >
-            У вас немає заброньованих авто
+            Ви ще не забронювали авто
           </Typography>
         )}
       </Container>

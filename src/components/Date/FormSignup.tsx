@@ -25,7 +25,6 @@ const FormSignup = () => {
 
   const onSubmit = (data: FormLoginAndSignup) => {
     if (isValid) {
-      console.log(data);
       handleRegister(data.email, data.password);
     }
   };
@@ -33,7 +32,6 @@ const FormSignup = () => {
   const handleRegister = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        console.log(user);
         dispatch(
           setUser({
             email: user.email,
@@ -71,6 +69,10 @@ const FormSignup = () => {
           control={control}
           rules={{
             required: "Поле є обов'язковим",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Введіть коректну електронну адресу",
+            },
           }}
           render={({ field }) => (
             <TextField
@@ -98,6 +100,8 @@ const FormSignup = () => {
           control={control}
           rules={{
             required: "Поле є обов'язковим",
+            minLength: { value: 8, message: "Мінімально 8 символів" },
+            maxLength: { value: 20, message: "Максимально 20 символів" },
           }}
           render={({ field }) => (
             <TextField

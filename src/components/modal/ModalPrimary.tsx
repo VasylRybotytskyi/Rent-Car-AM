@@ -4,11 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import FormPrimary from "../Date/FormPrimary";
-import { Car } from "../../Types/filterTypes";
-
-interface CarInfoProps {
-  carInfo: Car;
-}
+import { CarInfoProps } from "../../Types/Props";
 
 const style = {
   position: "absolute",
@@ -29,14 +25,12 @@ export default function ModalPrimary({ carInfo }: CarInfoProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  console.log(carInfo);
-
   return (
     <div>
       <Button
         color="secondary"
         variant="contained"
-        size="medium"
+        size="small"
         onClick={handleOpen}
       >
         Бронювати

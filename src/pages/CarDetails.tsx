@@ -45,7 +45,7 @@ const CarDetails = () => {
         >
           <Stack spacing={1}>
             <Typography variant="h4">
-              {carInfo?.name} {carInfo?.configuration} 2020
+              {carInfo?.name} {carInfo?.configuration} {carInfo?.year}
             </Typography>
 
             <Box display="flex" alignItems="center" gap={1}>
@@ -58,7 +58,7 @@ const CarDetails = () => {
               <Box display="flex" alignItems="end">
                 {carInfo?.rating && (
                   <Rating
-                    name="text-feedback"
+                    name="feedback"
                     value={carInfo?.rating}
                     readOnly
                     precision={0.5}
@@ -73,9 +73,10 @@ const CarDetails = () => {
 
             <Stack spacing={1}>
               <ItemCharacteristics
-                featureName="Обєм двигуна"
-                featureValue="3.0л 600кс"
+                featureName="Об'єм двигуна"
+                featureValue={`${carInfo?.engine}л ${carInfo?.hp}кс`}
               />
+
               <ItemCharacteristics
                 featureName="Коробка передач"
                 featureValue={carInfo?.transmission}

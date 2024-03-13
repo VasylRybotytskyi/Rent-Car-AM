@@ -65,15 +65,15 @@ const CarItem: FC<{ car: Car }> = ({ car }) => {
         <Box display="flex" justifyContent="center" gap={2} p={2}>
           <Box display="flex" alignItems="center" gap={1}>
             <TbManualGearbox />
-            <Typography>Автомат</Typography>
+            <Typography>{car?.transmission}</Typography>
           </Box>
           <Box display="flex" alignItems="center" gap={1}>
             <BsFillFuelPumpFill />
-            <Typography>{car.carFuel}</Typography>
+            <Typography>{car?.carFuel}</Typography>
           </Box>
           <Box display="flex" alignItems="center" gap={1}>
             <PiEngineFill />
-            <Typography>3.5л</Typography>
+            <Typography>{car?.engine}л</Typography>
           </Box>
         </Box>
       </Stack>

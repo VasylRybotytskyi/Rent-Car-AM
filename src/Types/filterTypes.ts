@@ -34,6 +34,9 @@ export type Car = {
   transmission: string;
   description: string;
   speedLimit: number;
+  year: number;
+  hp: number;
+  engine: string;
   formData?: FormPrimaryValue;
 };
 

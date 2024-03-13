@@ -5,10 +5,10 @@ export const brands = [
 ];
 
 export const classAuto = [
-  { name: "Економ", classValue: "economy" },
-  { name: "Сeредній", classValue: "midsize" },
-  { name: "Бізнес", classValue: "business" },
-  { name: "Кросовер", classValue: "crossover" },
+  { name: "Економ", classValue: "Економ" },
+  { name: "Сeредній", classValue: "Сeредній" },
+  { name: "Бізнес", classValue: "Бізнес" },
+  { name: "Кроссовер", classValue: "Кроссовер" },
 ];
 
 export const pricePerDay = [
@@ -19,7 +19,7 @@ export const pricePerDay = [
 ];
 
 export const fuel = [
-  { name: "Дизель", fuelValue: "diesel" },
-  { name: "Бензин", fuelValue: "petrol" },
-  { name: "Електро", fuelValue: "electric" },
+  { name: "Дизель", fuelValue: "Дизель" },
+  { name: "Бензин", fuelValue: "Бензин" },
+  { name: "Електро", fuelValue: "Електро" },
 ];

@@ -5,12 +5,8 @@ import { useDispatch } from "react-redux";
 import { addToOrder } from "../../redux/slices/orderSlice";
 import { toast } from "react-toastify";
 import { FormPrimaryValue } from "../../Types/formTypes";
-import { Car } from "../../Types/filterTypes";
 import { DatePicker } from "@mui/x-date-pickers";
-
-interface FormPrimaryProps {
-  carInfo: Car;
-}
+import { FormPrimaryProps } from "../../Types/Props";
 
 export default function FormPrimary({ carInfo }: FormPrimaryProps) {
   const dispatch = useDispatch();
@@ -37,7 +33,6 @@ export default function FormPrimary({ carInfo }: FormPrimaryProps) {
       const formData = getValues();
       formData.startDate = dayjs(formData.startDate).format("DD.MM.YYYY");
       formData.endDate = dayjs(formData.endDate).format("DD.MM.YYYY");
-      console.log(formData);
       dispatch(addToOrder({ ...carInfo, formData }));
       toast.success("Авто успішно заброньоване!");
     }
@@ -67,6 +62,7 @@ export default function FormPrimary({ carInfo }: FormPrimaryProps) {
           control={control}
           rules={{
             required: "Поле є обов'язковим",
+            maxLength: { value: 20, message: "Максимально 20 символів" },
           }}
           render={({ field }) => (
             <TextField
@@ -95,6 +91,7 @@ export default function FormPrimary({ carInfo }: FormPrimaryProps) {
           control={control}
           rules={{
             required: "Поле є обов'язковим",
+            maxLength: { value: 20, message: "Максимально 20 символів" },
           }}
           render={({ field }) => (
             <TextField
@@ -131,6 +128,8 @@ export default function FormPrimary({ carInfo }: FormPrimaryProps) {
           control={control}
           rules={{
             required: "Поле є обов'язковим",
+            minLength: { value: 10, message: "Мінімально 10 символів" },
+            maxLength: { value: 13, message: "Максимально 13 символів" },
           }}
           render={({ field }) => (
             <TextField
@@ -159,6 +158,10 @@ export default function FormPrimary({ carInfo }: FormPrimaryProps) {
           control={control}
           rules={{
             required: "Поле є обов'язковим",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Введіть коректну електронну адресу",
+            },
           }}
           render={({ field }) => (
             <TextField
@@ -200,6 +203,7 @@ export default function FormPrimary({ carInfo }: FormPrimaryProps) {
               {...field}
               format="DD.MM.YYYY"
               label="Дата початку"
+              disablePast={true}
               slotProps={{
                 openPickerIcon: { fontSize: "medium" },
                 openPickerButton: { color: "secondary" },
@@ -230,6 +234,7 @@ export default function FormPrimary({ carInfo }: FormPrimaryProps) {
               {...field}
               format="DD.MM.YYYY"
               label="Дата закінчення"
+              disablePast={true}
               slotProps={{
                 openPickerIcon: { fontSize: "medium" },
                 openPickerButton: { color: "secondary" },

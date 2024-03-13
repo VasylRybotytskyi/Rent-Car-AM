@@ -8,7 +8,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import ReduxProvider from "./redux/provider.tsx";
 import DateProvider from "./utils/LocalizationProvider.tsx";
-// import "./firebase/firebase.ts";
 
 const theme = createTheme({
   palette: {

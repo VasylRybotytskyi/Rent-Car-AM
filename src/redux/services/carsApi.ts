@@ -20,7 +20,7 @@ export const carsApi = createApi({
       query: () => ({
         body: gql`
           query MyQuery {
-            carLists {
+            carLists(first: 12) {
               carBrand
               id
               price
@@ -36,6 +36,9 @@ export const carsApi = createApi({
               transmission
               description
               speedLimit
+              year
+              hp
+              engine
             }
           }
         `,

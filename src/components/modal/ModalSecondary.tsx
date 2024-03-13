@@ -29,7 +29,7 @@ export default function ModalSecondary() {
       <Button
         color="secondary"
         variant="outlined"
-        size="medium"
+        size="small"
         onClick={handleOpen}
       >
         Бронювати в один клік
